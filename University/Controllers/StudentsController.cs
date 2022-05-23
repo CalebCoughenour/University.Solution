@@ -36,10 +36,17 @@ namespace University.Controllers
     }
     public ActionResult Details(int id)
     {
+      if (id == 0)
+      {
+        System.Console.WriteLine("Impossible id value for student");
+        return RedirectToAction("Index");
+      }
+
       var thisStudent = _db.Students
           .Include(student => student.JoinEntities)
           .ThenInclude(join => join.Course)
           .FirstOrDefault(student => student.StudentId == id);
+
       return View(thisStudent);
     }
     
