@@ -6,7 +6,7 @@
 
 <h2>Course Details</h2>
 <hr />
-<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)<h3>
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name) </h3>
 
   @if(@Model.JoinEntities.Count == 0)
   {
@@ -24,4 +24,4 @@
   }
 <p>@Html.ActionLink("Edit Course", "Edit", new { id = Model.CourseId }, new {@class = "myCssClass"})</p>
 <p>@Html.ActionLink("Delete Course", "Delete", new { id = Model.CourseId }, new {@class = "myCssClass"})</p>
-<p>@Html.ActionLink("Back to Courses", "Index", null, null,  new {@class = "myCssClass"})</p>
+<p>@Html.ActionLink("Back to Courses", "Index", null, null,  new {@class = "myCssClass"})</p> 

@@ -39,7 +39,7 @@ namespace University.Controllers
       var thisStudent = _db.Students
           .Include(student => student.JoinEntities)
           .ThenInclude(join => join.Course)
-          .FirstOrDefault(student =>student.StudentId== id);
+          .FirstOrDefault(student => student.StudentId == id);
       return View(thisStudent);
     }
     
