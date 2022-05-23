@@ -8,8 +8,8 @@ using University.Models;
 namespace University.Migrations
 {
     [DbContext(typeof(UniversityContext))]
-    [Migration("20220523181714_Initial")]
-    partial class Initial
+    [Migration("20220523221510_Second")]
+    partial class Second
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -67,7 +67,7 @@ namespace University.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("CategoryItem");
+                    b.ToTable("StudentCourse");
                 });
 
             modelBuilder.Entity("University.Models.StudentCourse", b =>

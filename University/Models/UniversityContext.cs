@@ -6,7 +6,7 @@ namespace University.Models
   {
     public DbSet<Course> Courses { get; set; }
     public DbSet<Student> Students { get; set; }
-    public DbSet<StudentCourse> CategoryItem { get; set; }
+    public DbSet<StudentCourse> StudentCourse { get; set; }
 
     public UniversityContext(DbContextOptions options) : base(options) { }
 

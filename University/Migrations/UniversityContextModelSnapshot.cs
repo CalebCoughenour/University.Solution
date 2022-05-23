@@ -65,7 +65,7 @@ namespace University.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("CategoryItem");
+                    b.ToTable("StudentCourse");
                 });
 
             modelBuilder.Entity("University.Models.StudentCourse", b =>
