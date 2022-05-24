@@ -16,6 +16,9 @@
   @Html.LabelFor(model => model.Name)
   @Html.EditorFor(model => model.Name)
 
+  @Html.Label("Select Major")
+  @Html.DropDownList("DepartmentId")
+
   <input class="myCssClass" type="submit" value="Save" />
 }
 

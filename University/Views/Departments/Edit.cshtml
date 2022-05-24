@@ -1,0 +1,20 @@
+@model University.Models.Department
+
+<div class="container">
+<h2>Edit Department</h2>
+
+<h4>Edit this Departement: @Html.DisplayFor(model => model.Name)</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.DepartmentId)
+
+  @Html.LabelFor(model => model.Name)
+  @Html.EditorFor(model => model.Name)
+
+  <input class = "myCssClass" type="submit" value="Save" />
+}
+
+<p>@Html.ActionLink("Back to Departments", "Index", null, null,  new {@class = "myCssClass"})</p>
+
+</div>

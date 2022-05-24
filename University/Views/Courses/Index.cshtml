@@ -18,5 +18,9 @@
   }
 </ul>
 
-<p>@Html.ActionLink("Add new course", "Create", null, null,  new {@class = "myCssClass"})</p>
+@if (@ViewBag.DepartmentNum > 0)
+{
+  <p>@Html.ActionLink("Add new course", "Create", null, null,  new {@class = "myCssClass"})</p>
+}
+
 <p>@Html.ActionLink("Home", "Index", "Home", null,  new {@class = "myCssClass"})</p>

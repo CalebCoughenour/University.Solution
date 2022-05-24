@@ -15,6 +15,9 @@
   @Html.LabelFor(model => model.Name)
   @Html.EditorFor(model => model.Name)
 
+  @Html.Label("Select Department")
+  @Html.DropDownList("DepartmentId")
+
   <input class = "myCssClass" type="submit" value="Save" />
 }
 <p>@Html.ActionLink("Back to courses", "Index", null, null,  new {@class = "myCssClass"})</p>

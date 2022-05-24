@@ -10,6 +10,9 @@
 {
   @Html.LabelFor(model => model.Name)
   @Html.TextBoxFor(model => model.Name)
+
+  @Html.Label("Select Department")
+  @Html.DropDownList("DepartmentId")
   <input class="myCssClass" type="submit" value="Add new course" />
 }
 <p>@Html.ActionLink("Show all courses", "Index", null, null , new {@class="myCssClass"})</p>
