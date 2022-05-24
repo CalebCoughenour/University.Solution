@@ -23,12 +23,17 @@
   {
     <h4>This Department does not contain any students yet!</h4>
   }
-
-  @foreach (var student in Model.Students)
+  else
   {
-    <li>@Html.ActionLink($"{student.Name}", "Details", "Students", new { id = student.StudentId })</li>
+    <h4>Students in this Department</h4>
+    <ul>
+      @foreach (var student in Model.Students)
+      {
+      <li>@Html.ActionLink($"{student.Name}", "Details", "Students", new { id = student.StudentId })</li>
+      }
+    </ul>
   }
-
+  
 
 <p>@Html.ActionLink("Edit Department", "Edit", new { id = Model.DepartmentId }, new {@class = "myCssClass"})</p>
 <p>@Html.ActionLink("Delete Department", "Delete", new { id = Model.DepartmentId }, new {@class = "myCssClass"})</p>
