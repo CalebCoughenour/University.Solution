@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using University.Models;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;
 
 namespace University.Controllers
@@ -18,11 +19,13 @@ namespace University.Controllers
       public ActionResult Index()
       {
         List<Course> model = _db.Courses.ToList();
+        ViewBag.DepartmentNum = _db.Departments.ToList().Count();
         return View(model);
       }
 
       public ActionResult Create()
       {
+        ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentID", "Name");
         return View();
       }
 
@@ -45,6 +48,7 @@ namespace University.Controllers
       public ActionResult Edit(int id)
       {
         var thisCourse = _db.Courses.FirstOrDefault(course => course.CourseId == id);
+        ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentID", "Name");
         return View(thisCourse);
       }
 

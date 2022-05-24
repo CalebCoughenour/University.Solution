@@ -1,0 +1,68 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+using University.Models;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace University.Controllers
+{
+  public class DepartmentsController : Controller
+  {
+    private readonly UniversityContext _db;
+
+    public DepartmentsController(UniversityContext db)
+    {
+      _db = db;
+    }
+
+    public ActionResult Index()
+    {
+      List<Department> model = _db.Departments.ToList();
+      return View(model);
+    }
+
+    public ActionResult Create()
+    {
+      return View();
+    }
+
+    [HttpPost]
+    public ActionResult Create(Department Department)
+    {
+      _db.Departments.Add(Department);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    public ActionResult Details(int id)
+    {
+      var thisDepartment = _db.Departments.FirstOrDefault(department => department.DepartmentId == id);
+      return View(thisDepartment);
+    }
+    public ActionResult Edit(int id)
+    {
+      var thisDepartment = _db.Departments.FirstOrDefault(department => department.DepartmentId == id);
+      return View(thisDepartment);
+    }
+    [HttpPost]
+    public ActionResult Edit(Department Department)
+    {
+      _db.Entry(Department).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+    public ActionResult Delete(int id)
+    {
+      var thisDepartment = _db.Departments.FirstOrDefault(department => department.DepartmentId == id);
+      return View(thisDepartment);
+    }
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      var thisDepartment = _db.Departments.FirstOrDefault(department => department.DepartmentId == id);
+      _db.Departments.Remove(thisDepartment);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    } 
+  }
+}
