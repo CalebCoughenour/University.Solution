@@ -25,7 +25,7 @@ namespace University.Controllers
 
       public ActionResult Create()
       {
-        ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentID", "Name");
+        ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "Name");
         return View();
       }
 

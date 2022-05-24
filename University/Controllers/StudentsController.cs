@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using University.Models;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
 namespace University.Controllers
 {
   public class StudentsController:Controller
@@ -18,8 +19,8 @@ namespace University.Controllers
     }
     public ActionResult Create()
     {
-      ViewBag.CourseId =new SelectList(_db.Courses,"CourseId","Name");
-      ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentID", "Name");
+      ViewBag.CourseId =new SelectList(_db.Courses, "CourseId", "Name");
+      ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "Name");
       return View();
     }
     [HttpPost]
@@ -29,7 +30,7 @@ namespace University.Controllers
       _db.SaveChanges();
       if(CourseId !=0)
       {
-        _db.StudentCourse.Add( new StudentCourse(){CourseId =CourseId ,StudentId =student.StudentId});
+        _db.StudentCourse.Add( new StudentCourse(){CourseId =CourseId ,StudentId = student.StudentId});
         _db.SaveChanges();
       }
       return RedirectToAction("Index");
@@ -55,7 +56,7 @@ namespace University.Controllers
     {
       var thisStudent = _db.Students.FirstOrDefault(student => student.StudentId == id);
       ViewBag.CourseId = new SelectList(_db.Courses, "CourseId", "Name");
-      ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentID", "Name");
+      ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "Name");
       return View(thisStudent);
     }
 
@@ -71,23 +72,23 @@ namespace University.Controllers
       return RedirectToAction("Index");
     }
 
-    // public ActionResult AddCourse(int id)
-    // {
-    //   var thisStudent = _db.Students.FirstOrDefault(student => student.StudentId == id);
-    //   ViewBag.CourseId = new SelectList(_db.Courses, "CourseId", "Name");
-    //   return View(thisStudent);
-    // }
+    public ActionResult AddCourse(int id)
+    {
+      var thisStudent = _db.Students.FirstOrDefault(student => student.StudentId == id);
+      ViewBag.CourseId = new SelectList(_db.Courses, "CourseId", "Name");
+      return View(thisStudent);
+    }
 
-    // [HttpPost]
-    // public ActionResult AddCourse(Student student, int CourseId)
-    // {
-    //   if (CourseId != 0)
-    //   {
-    //     _db.StudentCourse.Add(new StudentCourse() { CourseId = CourseId, StudentId = student.StudentId });
-    //     _db.SaveChanges();
-    //   }
-    //   return RedirectToAction("Index");
-    // }
+    [HttpPost]
+    public ActionResult AddCourse(Student student, int CourseId)
+    {
+      if (CourseId != 0)
+      {
+        _db.StudentCourse.Add(new StudentCourse() { CourseId = CourseId, StudentId = student.StudentId });
+        _db.SaveChanges();
+      }
+      return RedirectToAction("Index");
+    }
 
     public ActionResult Delete(int id)
     {

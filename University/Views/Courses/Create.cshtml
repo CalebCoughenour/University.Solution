@@ -1,6 +1,3 @@
-@{
-  Layout = "_Layout";
-}
 
 @model University.Models.Course
 
@@ -11,7 +8,7 @@
   @Html.LabelFor(model => model.Name)
   @Html.TextBoxFor(model => model.Name)
 
-  @Html.Label("Select Department")
+  @Html.Label("Select department")
   @Html.DropDownList("DepartmentId")
   <input class="myCssClass" type="submit" value="Add new course" />
 }
